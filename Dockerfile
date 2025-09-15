@@ -1,13 +1,18 @@
 # syntax=docker/dockerfile:1
 
+# tell Docker what base image you would like to use for your application
 FROM golang:1.19
 
 # Set destination for COPY
+# To make things easier when running the rest of your commands, create a directory inside the image that you're building. 
+# This also instructs Docker to use this directory as the default destination for all subsequent commands.
+# This way you don't have to type out full file paths in the Dockerfile, the relative paths will be based on this directory.
 WORKDIR /app
 
 # Download Go modules
 COPY go.mod go.sum ./
 RUN go mod download
+
 
 # Copy the source code. Note the slash at the end, as explained in
 # https://docs.docker.com/engine/reference/builder/#copy
