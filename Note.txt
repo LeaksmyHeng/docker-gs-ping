@@ -1,3 +1,27 @@
 To build your docker file
 1. make sure you cd into the directory (cd all the way to docker-gs-ping)
 2. then in the terminal, do the docker build: docker build --tag docker-gs-ping .
+
+Note:
+after ssh into the amazon EC2, I:
+- install git by using this command
+    sudo yum update -y
+    sudo yum install git -y
+    git --version
+- install docker by using this command
+    sudo yum update -y
+    sudo yum install docker -y
+    sudo systemctl start docker
+    sudo systemctl enable docker
+- I did double check that it ran successfully, by checking the version of:
+    docker --version
+    docker ps
+    git --version
+- I also clone git using: git clone https://github.com/LeaksmyHeng/docker-gs-ping.git
+- I clone my own fork because this one has the main.go file from hw1 and if I clone the one listed, it has the other main.go and I do not need that.
+- Once I clone it, I then can:
+    - cd docker-gs-ping
+    - ls: to double check the directory that we are in the correct one
+    - docker build --tag docker-gs-ping .
+    - docker build -t docker-gs-ping:multistage -f Dockerfile.multistage .
+    - docker run -d -p 8080:8080 docker-gs-ping
